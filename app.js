@@ -27,6 +27,42 @@ swig.setDefaults({cache:false});
 //加载数据库模块
 var mongoose = require('mongoose');
 
+//加载中间件body-paser,用来处理post提交过来的数据
+var bodyParser = require('body-parser');
+
+//加载cookies模块
+var Cookies = require('cookies');
+
+//加载用户数据表
+var User = require('./models/User');
+
+//bodyparser设置
+app.use( bodyParser.urlencoded({extended: true}) );
+
+//设置cookie
+app.use( function (req, res, next) {
+   req.cookies = new Cookies(req, res);
+
+   //解析登录用户的cookie信息,检验是否登录状态
+    req.userInfo = {};
+    if (req.cookies.get('userInfo')){
+        try {
+            req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+
+            //获取当前登录用户的类型，是否是管理员
+            User.findById(req.userInfo._id).then(function (userInfo) {
+                req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+                next();
+            })
+        } catch(e){
+            next();
+        }
+    } else {
+        next();
+    }
+
+});
+
 //使用express框架绑定路由 -> 首页
 /*app.get('/', function (req, res, next) {
     // res.send('<h1>欢迎光临han的博客！</h1>');
