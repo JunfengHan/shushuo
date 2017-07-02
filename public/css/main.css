@@ -1,3 +1,15 @@
+@font-face {
+    font-family: robotoregular;
+    src: url('../fonts/Roboto-Regular-webfont.eot');
+    src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 header {
     width: 100%;
     background-color: yellowgreen;
@@ -42,11 +54,71 @@ header .header_wrap {
     width: 70%;
     float: left;
 }
+.content_list {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 30px;
+}
+.content_list h2 {
+    padding: 10px;
+    background-color: #00CC99;
+    // font-family: 'robotoregular';
+}
+.content_list .content_info {
+    text-align: right;
+    font-size: 12px;
+}
+.content_list .content_definite_info {
+    margin-right: 20px;
+}
+dfn p {
+    line-height: 60px;
+    text-indent: 30px;
+}
+.read_more {
+    width: 60px;
+    border-radius: 4px;
+    height: 30px;
+    text-align: center;
+    background-color: #FF9966;
+}
+.read_more a {
+    line-height: 30px;
+    color: #ffffff;
+}
+.pager {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pager .previous {
+    float: left;
+    width: 30%;
+}
+.pager .center {
+    float: left;
+    width: 40%;
+}
+.pager .next {
+    float: right;
+    width: 30%;
+}
+
+
+/* ------------------------side---------------------- */
 .side {
     width:30%;
     min-width: 300px;
     max-width: 450px;
     float: right;
+    overflow: hidden;
+    margin-top: 30px;
 }
 .user, .signin, .login {
     background-color: #ffffff;
@@ -58,6 +130,7 @@ header .header_wrap {
     width: 90%;
     height: 160px;
     border: 2px solid #cccccc;
+    box-sizing: border-box;
 }
 .side>.user h3 {
     background-color: #cccccc;

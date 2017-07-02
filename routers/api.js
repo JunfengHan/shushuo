@@ -116,6 +116,6 @@ router.post('/user/login', function (req, res) {
 router.get('/user/logout', function (req, res) {
     req.cookies.set('userInfo', null);
     res.json(responseData);
-})
+});
 
 module.exports = router;

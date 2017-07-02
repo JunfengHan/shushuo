@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<ol class="breadcrumb">
+  <li><a href="#">管理首页</a></li>
+  <li><span>分类列表</span></li>
+</ol>
+
+<h3>分类列表</h3>
+<table class="table table-hover table-striped">
+	<tr>
+		<th>ID</th>
+		<th>CategoryName</th>
+		<th>Operation</th>
+	</tr>
+
+	{% for category in categories %}
+	<tr>
+		<td>{{category._id.toString()}}</td>
+		<td>{{category.name}}</td>
+		<td>
+			<a href="/admin/category/edit?id={{category._id.toString()}}">Edit</a>
+			<span>|</span>
+			<a href="/admin/category/delete?id={{category._id.toString()}}">Delete</a>
+		</td>
+	</tr>
+	{% endfor %}
+
+</table>
+
+<!-- 上下翻页 -->
+{% include 'page_category.html' %}
+
+{% endblock %}

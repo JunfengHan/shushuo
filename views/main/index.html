@@ -13,19 +13,63 @@
     <header class="clearfix">
         <div class="header_wrap"><h2>han博客</h2>
             <ul>
-                <li><a href="">首页</a></li>
-                <li><a href="">HTML5</a></li>
-                <li><a href="">CSS3</a></li>
-                <li><a href="">JavaScript</a></li>
-                <li><a href="">Nodejs</a></li>
-                <li><a href="">Express</a></li>
+                <li><a href="/">首页</a></li>
+                {%for category in categories%}
+                <li><a href="/?category={{category.id}}">{{category.name}}</a></li>
+                {%endfor%}
             </ul>
         </div>
-
     </header>
+
     <div id="content_wrap" class="clearfix">
         <div class="container">
-            <div class="container_main">这里是主要内容</div>
+
+            {%for content in contents%}
+            <div class="content_list">
+                <h2>{{content.title}}</h2>
+                <dfn><P class="">{{content.description}}</P></dfn>
+                <div class="read_more"><a href="javascript:;" >阅读全文</a></div>
+                <p class="content_info">
+                作者：<span class="content_definite_info">{{content.user.username}}</span>
+                时间：<span class="content_definite_info">{{content.addTime|date('Y-m-d H:i:s', -8*60)}}</span>
+                阅读：<span class="content_definite_info">{{content.views}}</span>
+                评论：<span class="content_definite_info">6</span>
+                </p>
+            </div>
+            {% endfor %}
+
+            <div class="pager">
+                <ul class="clearfix">
+
+                    <li class="previous">
+
+                        {%if page <= 1%}
+                        <span>没有上一页了</span>
+                        {%else%}
+                        <a href="/?category={{category}}&page={{page-1}}">上一页</a>
+                        {%endif%}
+
+                    </li>
+
+                    {%if pages > 0%}
+                    <li class="center">
+                        <strong>{{page}} / {{pages}}</strong>
+                    </li>
+                    {%endif%}
+
+                    <li class="next">
+
+                        {%if page >= pages%}
+                        <span>没有下一页了</span>
+                        {%else%}
+                        <a href="/?category={{category}}&page={{page+1}}">下一页</a>
+                        {%endif%}
+
+                    </li>
+
+                </ul>
+            </div>
+
         </div>
 
         <div class="side">

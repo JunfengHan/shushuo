@@ -13,11 +13,11 @@ var app = express();
 app.use( '/public', express.static(__dirname + '/public'));
 // app.use( express.static('/public'));
 
-//加载模版处理模块
+//加载模板处理模块
 var swig = require('swig');
 //配置应用模版 => 定义当前应用使用的模版引擎 =>parameter1:模版引擎名称，同时也是文件模版后缀 2：和app.engine中定义的模版引擎名称（第一个参数）要一致
 app.engine('html', swig.renderFile);
-//设置模版文件存放目录，paramater1:views, paramater2:目录
+//设置模板文件存放目录，paramater1:views, paramater2:目录
 app.set('views', './views');
 //注册所用的模版引擎，paramater1:view engine, 2:要和app.engine方法中定义的引擎的名称（paramater1）相同
 app.set('view engine', 'html');
@@ -77,7 +77,7 @@ app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));
 app.use('/', require('./routers/main'));
 
-//监听http请求
+//连接数据库，监听http请求
 mongoose.connect('mongodb://localhost:27018/blog', function (err) {
     if (err) {
         console.log('数据库连接错误');
