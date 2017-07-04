@@ -63,7 +63,7 @@ header .header_wrap {
 }
 .content_list h2 {
     padding: 10px;
-    background-color: #00CC99;
+    text-align: center;
     // font-family: 'robotoregular';
 }
 .content_list .content_info {
@@ -110,11 +110,75 @@ dfn p {
     width: 30%;
 }
 
+//-------------评论
+
+.comment_wrap {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.comment_wrap h3 {
+    height: 60px;
+    line-height: 60px;
+    background-color: #00CC99;
+    color: #ffffff;
+}
+.comment_wrap h3 em {
+    padding: 0 4px;
+}
+span.comment_span {
+    font-size: 24px;
+}
+.comment_wrap h3 span {
+    margin: 0 30px;
+}
+.comment_wrap .comment_notice {
+    display: none;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    background-color: #BBBBBB;
+    text-align: center;
+}
+.comment_wrap .place_login {
+    margin-top: 30px;
+    padding: 10px;
+}
+.comment_area textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.comment_area button{
+    outline: none;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    float: right;
+    margin: 10px;
+    background-color: #00CC99;
+    border: none;
+    color: #ffffff;
+}
+/* .clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;
+} */
 
 /* ------------------------side---------------------- */
 .side {
     width:30%;
-    min-width: 300px;
     max-width: 450px;
     float: right;
     overflow: hidden;

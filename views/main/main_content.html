@@ -1,0 +1,68 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+    <div class="content_list">
+        <h2>{{content.title}}</h2>
+        <p class="content_info">
+        作者：<span class="content_definite_info">{{content.user.username}}</span>
+        时间：<span class="content_definite_info">{{content.addTime|date('Y-m-d H:i:s', -8*60)}}</span>
+        阅读：<span class="content_definite_info">{{content.views}}</span>
+        评论：<span class="content_definite_info">6</span>
+        </p>
+        <dfn>
+        	{{content.content}}
+        </dfn>
+    </div>
+
+    <div class="content_list comment_wrap">
+        <h3><span class="comment_span">评论</span><span>一共<em class="comment_num">0</em>条</span></h3>
+
+        {% if !userInfo._id %}
+        <p class="place_login">登陆后才能评论哦！请先登陆...</p>
+        {% endif %}
+
+        <div class="comment_area clearfix">
+            <textarea id="message_comment" rows="10" placeholder="述说你的想法！"></textarea>
+            <!-- 方便获取contentid,也可以从url中截取 -->
+            <input type="hidden" class="contentId" ="" name="" value="{{content.id}}">
+            <button id="comment_btn" type="submit" >Submit</button>
+        </div>
+
+        <p class="comment_notice">还没有评论！</p>
+
+        <ul class="comment_list">
+            <!-- <li class="comment_content_list">
+                <div class="commnet_user">
+                    <img src="">
+                    <p class="comment_username">admin</p>
+                    <p class="comment_time">15:15</p>
+                </div>
+                <div class="comment_content">不错啊，可以试试</div>
+                <div class="comment_interaction">
+                    <span></span><em>0</em>
+                    <span></span><em>0</em>
+                    <span></span><em>0</em>
+                </div>
+            </li> -->
+        </ul>
+
+        <div class="pager">
+            <ul class="clear">
+                <li class="previous">
+                    <a href="">上一页</a>
+                </li>
+                <li></li>
+                <li class="next">
+                    <a href="">下一页</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript" src='/public/js/comment.js'></script>
+
+{% endblock %}
+
+

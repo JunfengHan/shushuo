@@ -27,7 +27,7 @@ swig.setDefaults({cache:false});
 //加载数据库模块
 var mongoose = require('mongoose');
 
-//加载中间件body-paser,用来处理post提交过来的数据
+//加载中间件body-paser,加载解析json,用来处理post提交过来的数据
 var bodyParser = require('body-parser');
 
 //加载cookies模块

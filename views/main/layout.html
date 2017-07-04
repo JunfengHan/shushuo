@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的博客</title>
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/fontAwesome/css/font-awesome.css">
+    <script src="/public/js/jquery-3.1.1.min.js"></script>
+    <script src="/public/js/index.js"></script>
+</head>
+<body>
+    <header class="clearfix">
+        <div class="header_wrap"><h2>han博客</h2>
+            <ul>
+                <li><a href="/">首页</a></li>
+                {%for category in categories%}
+                <li><a href="/?category={{category.id}}">{{category.name}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+    </header>
+
+    <div id="content_wrap" class="clearfix">
+        <div class="container">
+
+           {% block content %}
+           {% endblock %}
+
+        </div>
+
+        <div class="side">
+
+            <!--根据登录状态判断显示的信息-->
+            {% if userInfo._id %}
+            <div class="user">
+                <h3>用户信息</h3>
+                <ul id="user_info">
+                    <li class="user_name">{{userInfo.username}}</li>
+
+                    {% if userInfo.isAdmin %}
+                    <li class="self_introduce2">管理员，未来是你的 <a href="/admin">进入管理</a></li>
+                    {% else %}
+                    <li class="self_introduce">我是传奇，未来是你的</li>
+                    {% endif %}
+
+                    <li class="logout"><a href="javascript:;" id="logout">退出</a></li>
+                </ul>
+            </div>
+
+            {% else %}
+            <div class="form login">
+                <h3>登录</h3>
+                <ul>
+                    <li><span >用户名：</span><input class="username" name="username" type="text"></li>
+                    <li><span class="password">密码：</span><input class="password" name="password" type="password"></li>
+                    <li><button>登陆</button></li>
+                    <p class="colWarning"></p>
+                    <li><p>没有账号，<span class="login_trigger">注册一个</span></p></li>
+
+                </ul>
+            </div>
+
+            <div class="form signin">
+                <h3>注册</h3>
+                <ul>
+                    <li><span>用户名：</span><input name="username" type="text" /></li>
+                    <li><span>密码：</span><input name="password" type="password" /></li>
+                    <li><span>确认密码：</span><input name="repassword" type="password" /></li>
+                    <li><button>注册</button></li>
+                    <p class="colWarning"></p>
+                    <li><p>已有账号，<span class="signin_trigger">登陆</span></p></li>
+
+                </ul>
+            </div>
+            {%endif%}
+
+        </div>
+    </div>
+
+</body>
+</html>

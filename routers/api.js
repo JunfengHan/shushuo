@@ -1,11 +1,12 @@
 /**
- * Created by Administrator on 2017/6/24.
+ * 与后台交互有关的
  */
 
 var express = require('express');
 var router = express.Router();
 //->返回一个构造函数，可以像操作对象一样操作数据库
 var User = require('../models/User');
+var Content = require('../models/Content');
 
 //统一返回数据的格式
 var responseData;
@@ -116,6 +117,43 @@ router.post('/user/login', function (req, res) {
 router.get('/user/logout', function (req, res) {
     req.cookies.set('userInfo', null);
     res.json(responseData);
+});
+
+
+//评论提交
+router.post('/comment/post', function(req, res){
+    //内容的id，评论在内容里
+    var contentId = req.body.contentid || '';
+    var postData = {
+        username: req.userInfo.username,
+        postTime: new Date(),
+        content: req.body.content
+    }
+    //查询当前这篇内容的信息
+    Content.findOne({
+        _id: contentId
+    }).then(function(content){
+        content.comments.push(postData);
+        return content.save();
+    }).then(function(newContent){
+        responseData.message = '评论成功';
+        responseData.data = newContent;
+        res.json(responseData);
+    });
+
+});
+
+//加载评论
+router.get('/comment', function(req, res){
+
+    var contentId = req.query.contentid || '';
+
+    Content.findOne({
+        _id: contentId
+    }).then(function(content){
+        responseData.data = content.comments;
+        res.json(responseData);
+    });
 });
 
 module.exports = router;
